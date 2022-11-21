@@ -1,0 +1,47 @@
+server:
+  port: @gateway_server_port@
+spring:
+  application:
+    name: crm-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: crm-customer         #规则名称
+          uri: lb://crm-customer   #目标服务地址
+          predicates: #路由条件
+            - Path=/api/customer/**
+          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
+            - StripPrefix=2
+        - id: crm-system
+          uri: lb://crm-system
+          predicates: #路由条件
+            - Path=/api/system/**
+          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
+            - StripPrefix=2
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+            allowedHeaders: "*"
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://@eureka_server_host@:@eureka_server_port@/eureka/
+swagger:
+  global-operation-parameters:
+
+#不进行认证拦截白名单
+tokenFilter:
+  url:
+    whiteList:
+      - /login
+      - /v2/api-docs

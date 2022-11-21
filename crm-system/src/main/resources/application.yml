@@ -1,0 +1,13 @@
+spring:
+  redis:
+    host: localhost
+    port: 6379
+swagger:
+  enabled: true
+  title: 系统管理服务
+  version: 1.0
+  base-package: com.briup.crmsystem.controller
+  authorization:
+    key-name: token
+    auth-regex: (?!/login|/logout)(\w|\W)*
+  base-path: /**

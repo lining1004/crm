@@ -1,0 +1,11 @@
+# Project exclude paths
+/crm-config-server/target/
+/crm-customer/target/
+/crm-eureka-server/target/
+/crm-gateway-server/target/
+/crm-marketing/target/
+/crm-report/target/
+/crm-resource/target/
+/crm-service/target/
+/crm-system/target/
+/crm-util/target/

@@ -1,0 +1,18 @@
+server:
+  port: @config_server_port@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/briup-lining/briup-config.git
+          search-paths: crm
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://@eureka_server_host@:@eureka_server_port@/eureka/

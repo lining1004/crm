@@ -1,0 +1,15 @@
+server:
+  port: @eureka_server_port@
+spring:
+  application:
+    name: eureka-server
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://@eureka_server_host@:@eureka_server_port@/eureka/
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 60000
+

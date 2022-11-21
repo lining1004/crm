@@ -1,0 +1,9 @@
+swagger:
+  enabled: true
+  title: 客户管理服务
+  version: 1.0
+  base-package: com.briup.crmcustomer.controller
+  authorization:
+    key-name: token
+    auth-regex: (?!/login|/logout)(\w|\W)*
+  base-path: /**
