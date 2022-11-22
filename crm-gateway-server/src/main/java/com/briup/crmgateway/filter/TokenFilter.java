@@ -6,6 +6,7 @@ import com.briup.crmuitl.util.ResultCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -14,6 +15,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -23,15 +26,14 @@ import java.util.List;
  * @Author lining
  * @Date 2022/11/15
  */
-//@Component
+@Component
 public class TokenFilter implements GlobalFilter, Ordered {
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
     private ObjectMapper ObjectMapper;
-
-    @Value("${tokenFilter.url.whiteList}")
-    private List<String> whiteList;
+    @Value("${tokenfilter.whiteList}")
+    private String whiteList;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -45,8 +47,10 @@ public class TokenFilter implements GlobalFilter, Ordered {
         if (request.getMethod().matches("OPTIONS")) {
             return mono;
         }
+        String url = request.getURI().getPath();
+        System.out.println("请求路径："+url);
         //当访问路径为白名单路径，放行
-        if (whiteList.contains(request.getURI().getPath())) {
+        if (url.matches(whiteList)) {
             return mono;
         }
         //获取请求头信息

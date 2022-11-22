@@ -6,6 +6,7 @@
         <artifactId>crm</artifactId>
         <groupId>com.briup</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.briup</groupId>
     <artifactId>crm-customer</artifactId>

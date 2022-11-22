@@ -22,6 +22,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>2.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>com.briup</groupId>
             <artifactId>crm-util</artifactId>
         </dependency>

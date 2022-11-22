@@ -12,23 +12,26 @@ spring:
             - Path=/api/customer/**
           filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
             - StripPrefix=2
-        - id: crm-system
-          uri: lb://crm-system
-          predicates: #路由条件
-            - Path=/api/system/**
-          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
-            - StripPrefix=2
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - DELETE
-              - PUT
-            allowedHeaders: "*"
+  redis:
+    host: localhost
+    port: 6379
+#        - id: crm-system
+#          uri: lb://crm-system
+#          predicates: #路由条件
+#            - Path=/api/system/**
+#          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
+#            - StripPrefix=2
+#      globalcors:
+#        add-to-simple-url-handler-mapping: true
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - DELETE
+#              - PUT
+#            allowedHeaders: "*"
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -38,10 +41,5 @@ eureka:
       defaultZone: http://@eureka_server_host@:@eureka_server_port@/eureka/
 swagger:
   global-operation-parameters:
-
-#不进行认证拦截白名单
-tokenFilter:
-  url:
-    whiteList:
-      - /login
-      - /v2/api-docs
+tokenfilter:
+  whiteList: .*login|.*api-docs  #自定义不进行认证拦截路径白名单

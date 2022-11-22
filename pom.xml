@@ -24,7 +24,7 @@
         <mybatisPlusGenerator.version>3.5.3</mybatisPlusGenerator.version>
         <velocity.version>1.7</velocity.version>
         <mysql.connector.version>8.0.20</mysql.connector.version>
-        <swagger.version>1.9.1.RELEASE</swagger.version>
+        <swagger.version>2.0.1.RELEASE</swagger.version>
     </properties>
 
     <modules>
