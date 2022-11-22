@@ -1,6 +1,6 @@
 swagger:
   enabled: true
-  title: 服务管理服务
+  title: 营销管理服务
   version: 1.0
   base-package: com.briup.crmmarketing.controller
   authorization:

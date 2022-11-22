@@ -3,35 +3,53 @@ server:
 spring:
   application:
     name: crm-gateway
-  cloud:
-    gateway:
-      routes:
-        - id: crm-customer         #规则名称
-          uri: lb://crm-customer   #目标服务地址
-          predicates: #路由条件
-            - Path=/api/customer/**
-          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
-            - StripPrefix=2
   redis:
     host: localhost
     port: 6379
-#        - id: crm-system
-#          uri: lb://crm-system
-#          predicates: #路由条件
-#            - Path=/api/system/**
-#          filters: #过滤器，去掉前2部分前缀后再转发，/api/test就被去掉了
-#            - StripPrefix=2
-#      globalcors:
-#        add-to-simple-url-handler-mapping: true
-#        cors-configurations:
-#          '[/**]':
-#            allowedOrigins: "*"
-#            allowedMethods:
-#              - GET
-#              - POST
-#              - DELETE
-#              - PUT
-#            allowedHeaders: "*"
+  cloud:
+    gateway:
+      routes:
+        - id: crm-customer         #规则名称 客户管理
+          uri: lb://crm-customer   #目标服务地址
+          predicates:
+            - Path=/api/customer/**
+          filters:
+            - StripPrefix=2
+        - id: crm-system    #系统管理
+          uri: lb://crm-system
+          predicates:
+            - Path=/api/system/**
+          filters:
+            - StripPrefix=2
+        - id: crm-marketing   #营销管理
+          uri: lb://crm-marketing
+          predicates:
+            - Path=/api/marketing/**
+          filters:
+            - StripPrefix=2
+        - id: crm-report    #统计管理
+          uri: lb://crm-report
+          predicates:
+            - Path=/api/report/**
+          filters:
+            - StripPrefix=2
+        - id: crm-service   #服务管理
+          uri: lb://crm-service
+          predicates:
+            - Path=/api/service/**
+          filters:
+            - StripPrefix=2
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+            allowedHeaders: "*"
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}

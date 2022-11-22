@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
     @Bean
     public MybatisPlusInterceptor interceptor() {
+        System.out.println("配置分页拦截器");
         //1.创建拦截器对象
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         //2.添加分页拦截器 mysql limit语句

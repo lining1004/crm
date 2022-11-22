@@ -1,9 +1,10 @@
 swagger:
   enabled: true
-  title: 服务管理服务
+  title: 统计管理服务
   version: 1.0
-  base-package: com.briup.crmreport.controller
+  base-package: com.briup
   authorization:
     key-name: token
     auth-regex: (?!/login|/logout)(\w|\W)*
   base-path: /**
+  global-operation-parameters:
