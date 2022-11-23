@@ -1,7 +1,7 @@
 package com.briup.crmcustomer.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.briup.crmcommon.utils.Result;
+import com.briup.crmresource.utils.Result;
 import com.briup.crmcustomer.entity.Customer;
 import com.briup.crmcustomer.service.ICustomerService;
 import io.swagger.annotations.Api;

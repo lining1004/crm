@@ -1,4 +1,4 @@
-package com.briup.crmcommon.utils;
+package com.briup.crmresource.utils;
 
 import java.io.Serializable;
 

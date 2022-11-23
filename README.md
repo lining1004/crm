@@ -8,6 +8,8 @@
 
 演示地址：```http://127.0.0.1:8083/swagger-ui/index.html```
 
+账号：briup 密码：briup
+
 ### 技术选型
 
 1. 前后端分离+微服务架构

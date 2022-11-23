@@ -1,7 +1,7 @@
-package com.briup.crmcommon.exception;
+package com.briup.crmresource.exception;
 
-import com.briup.crmcommon.utils.Result;
-import com.briup.crmcommon.utils.ResultCode;
+import com.briup.crmresource.utils.Result;
+import com.briup.crmresource.utils.ResultCode;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -2,15 +2,13 @@ package com.briup.crmsystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.briup.crmcommon.exception.ServiceException;
-import com.briup.crmcommon.utils.ResultCode;
+import com.briup.crmresource.exception.ServiceException;
+import com.briup.crmresource.utils.ResultCode;
 import com.briup.crmsystem.Constant.CRMSystemConstant;
 import com.briup.crmsystem.entity.User;
 import com.briup.crmsystem.mapper.UserMapper;
 import com.briup.crmsystem.service.IUserService;
 import com.briup.crmuitl.util.JwtUtil;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

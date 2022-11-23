@@ -1,6 +1,6 @@
-package com.briup.crmcommon.exception;
+package com.briup.crmresource.exception;
 
-import com.briup.crmcommon.utils.ResultCode;
+import com.briup.crmresource.utils.ResultCode;
 
 /**
  * 当service层抛出业务异常信息时，使用该异常对象

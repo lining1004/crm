@@ -1,4 +1,4 @@
-package com.briup.crmcommon.utils;
+package com.briup.crmresource.utils;
 
 /**
  * 统一并自定义返回状态码，如有需求可以另外增加

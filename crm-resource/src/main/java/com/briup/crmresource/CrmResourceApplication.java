@@ -1,13 +1,12 @@
-package com.briup.crmcommon;
+package com.briup.crmresource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class CrmCommonApplication {
+public class CrmResourceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CrmCommonApplication.class, args);
+        SpringApplication.run(CrmResourceApplication.class, args);
     }
 }

@@ -1,6 +1,6 @@
 package com.briup.crmsystem.controller;
 
-import com.briup.crmcommon.utils.Result;
+import com.briup.crmresource.utils.Result;
 import com.briup.crmsystem.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
