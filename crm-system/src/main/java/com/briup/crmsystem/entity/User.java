@@ -1,9 +1,8 @@
 package com.briup.crmsystem.entity;
-
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
 
 /**
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author briup
- * @since 2022-11-15
+ * @since 2022-11-24
  */
 @TableName("sys_user")
 public class User implements Serializable {
@@ -20,86 +19,80 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "usr_id", type = IdType.AUTO)
-    private Long usrId;
+    private Long id;
 
-    private String usrName;
+    @TableField("usr_name")
+    private String name;
 
-    private String usrPassword;
+    @TableField("usr_password")
+    private String password;
 
-    private String usrEmail;
+    @TableField("usr_email")
+    private String email;
 
-    private String usrRoleName;
+    @TableField("usr_flag")
+    private Integer flag;
 
-    private Integer usrFlag;
+    @TableField("usr_role_id")
+    private Long roleId;
 
-    private Long usrRoleId;
-
-    public Long getUsrId() {
-        return usrId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUsrId(Long usrId) {
-        this.usrId = usrId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUsrName() {
-        return usrName;
+    public String getName() {
+        return name;
     }
 
-    public void setUsrName(String usrName) {
-        this.usrName = usrName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUsrPassword() {
-        return usrPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUsrPassword(String usrPassword) {
-        this.usrPassword = usrPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUsrEmail() {
-        return usrEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsrEmail(String usrEmail) {
-        this.usrEmail = usrEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUsrRoleName() {
-        return usrRoleName;
+    public Integer getFlag() {
+        return flag;
     }
 
-    public void setUsrRoleName(String usrRoleName) {
-        this.usrRoleName = usrRoleName;
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
-    public Integer getUsrFlag() {
-        return usrFlag;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setUsrFlag(Integer usrFlag) {
-        this.usrFlag = usrFlag;
-    }
-
-    public Long getUsrRoleId() {
-        return usrRoleId;
-    }
-
-    public void setUsrRoleId(Long usrRoleId) {
-        this.usrRoleId = usrRoleId;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "usrId = " + usrId +
-                ", usrName = " + usrName +
-                ", usrPassword = " + usrPassword +
-                ", usrEmail = " + usrEmail +
-                ", usrRoleName = " + usrRoleName +
-                ", usrFlag = " + usrFlag +
-                ", usrRoleId = " + usrRoleId +
+                "id = " + id +
+                ", name = " + name +
+                ", password = " + password +
+                ", email = " + email +
+                ", flag = " + flag +
+                ", roleId = " + roleId +
                 "}";
     }
 }

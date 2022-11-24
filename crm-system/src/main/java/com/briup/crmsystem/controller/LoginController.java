@@ -21,7 +21,7 @@ public class LoginController {
     private IUserService service;
 
     @ApiOperation("用户登录")
-    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED)
+    @PostMapping(value = "/login",consumes = MediaType.APPLICATION_FORM_URLENCODED)
     public Result login(String username, String password) {
         String token = service.login(username, password);
         return Result.success(token);

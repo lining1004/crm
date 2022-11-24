@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author lining
  * @Date 2022/11/23
  */
-//@Api(tags = "客户贡献分析")
-//@RestController
-//@RequestMapping("/report/contribution")
+@Api(tags = "客户贡献分析")
+@RestController
+@RequestMapping("/report/contribution")
 public class CustContributionController {
 
     @ApiOperation("按客户地区分布展示（柱状图）")

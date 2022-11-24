@@ -5,13 +5,13 @@ import java.io.Serializable;
 /**
  * 统一Controller中RESTFul风格接口返回的结果
  */
-public class Result implements Serializable {
+public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Integer code;
     private String msg;
-    private Object data;
+    private T data;
 
     private Result() {
     }
@@ -88,11 +88,11 @@ public class Result implements Serializable {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
