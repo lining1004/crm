@@ -51,4 +51,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //返回token字符串
         return token;
     }
+    
 }
