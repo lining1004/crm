@@ -1,21 +1,26 @@
 package com.briup.crmsystem.controller;
 
 import com.briup.crmresource.utils.Result;
+import com.briup.crmsystem.config.GiteeAppProperties;
+import com.briup.crmsystem.service.IUserService;
 import com.google.common.collect.ImmutableMap;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.ws.rs.core.MediaType;
 import java.util.Map;
 
 /**
@@ -27,34 +32,44 @@ import java.util.Map;
 @Controller
 public class ThirdLoginController {
     @Autowired
-    private RestTemplate restTemplate;
+    private GiteeAppProperties giteeAppProperties;
+    @Autowired
+    private IUserService service;
 
-    @ApiOperation("点击图标,使用gitee账号登录系统")
-    @GetMapping("/loginByGitee")
-    public String loginByGitee(){
-        String client_id = "f076b00c996c2ccaa469c22c58a6a4b8486a6782c13d56e72cb9f7ee184d8253";
-        //回调地址
-        String redirect_uri = "http://localhost:9005/auth/gitee";
-        String url = "https://gitee.com/oauth/authorize?client_id="+client_id+"&redirect_uri="+redirect_uri+"&response_type=code";
-        return "redirect:"+url;
+    @ApiOperation("通过阿里云短信服务获取手机验证码")
+    @PostMapping("/sms")
+    @ResponseBody
+    public Result sendSMS(String phoneNumber){
+        service.sendSMS(phoneNumber);
+        return Result.success();
     }
 
-    @GetMapping("/auth/gitee")
+    @ApiOperation("通过手机号登录")
+    @PostMapping(value = "/loginByPhoneNumber",consumes = MediaType.APPLICATION_FORM_URLENCODED)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "phoneNumber",value = "手机号"),
+            @ApiImplicitParam(name = "code",value = "短信验证码")
+    })
     @ResponseBody
-    public Result authByGitee(@RequestParam("code") String code){
-        String client_id = "f076b00c996c2ccaa469c22c58a6a4b8486a6782c13d56e72cb9f7ee184d8253";
-        String redirect_uri = "http://localhost:9005/auth/gitee";
-        String client_secret = "4eaeeedcdd28be67441eb52d36c97c1aadea9a3ba5c640c24ce52983fa99c494";
-        String url = "https://gitee.com/oauth/token";
-        MultiValueMap params = new LinkedMultiValueMap();
-        params.add("grant_type","authorization_code");
-        params.add("code", code);
-        params.add("client_id", client_id);
-        params.add("redirect_uri", redirect_uri);
-        params.add("client_secret", client_secret);
-        HttpEntity<Object> request = new HttpEntity<>(params,null);
-        String body = restTemplate.postForObject(url, request, String.class);
-        System.out.println(body);
-        return Result.success(body);
+    public Result loginByPhoneNumber(String phoneNumber,String code){
+        String token = service.loginByPhoneNumber(phoneNumber,code);
+        return Result.success(token);
+    }
+
+    @ApiOperation(value = "点击图标,使用gitee账号登录系统",notes = "直接通过浏览器访问进行测试")
+    @GetMapping("/loginByGitee")
+    public String loginByGitee(){
+        String client_id = giteeAppProperties.getClient_id();
+        //回调地址
+        String redirect_uri = giteeAppProperties.getRedirect_uri();
+        String url = giteeAppProperties.getAuthorize_uri()+client_id+"&redirect_uri="+redirect_uri+"&response_type=code";
+        return "redirect:"+url;
+    }
+    @GetMapping(value = "/auth/gitee")
+    @ResponseBody
+    public Result<String> authByGitee(@RequestParam("code") String code){
+        String token = service.authByGitee(code);
+        System.out.println(Result.success(token));
+        return Result.success(token);
     }
 }

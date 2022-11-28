@@ -9,4 +9,10 @@ import com.briup.crmsystem.entity.User;
  */
 public interface IUserService extends IService<User> {
     String login(String username, String password);
+
+    String authByGitee(String code);
+
+    void sendSMS(String phoneNumber);
+
+    String loginByPhoneNumber(String phoneNumber, String code);
 }

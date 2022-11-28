@@ -13,4 +13,16 @@ public interface CRMSystemConstant {
      * 账号禁用
      */
     Integer ACCOUNT_STATUS_DISABLED = 0;
+    /**
+     * 客户经理角色
+     */
+    Integer ACCOUNT_ROLE_MANAGER = 4;
+    /*
+        登录类型:手机号
+     */
+    String IDENTITY_TYPE_PHONE = "phone";
+    /*
+        登录类型:gitee授权
+     */
+    String IDENTITY_TYPE_GITEE = "gitee";
 }

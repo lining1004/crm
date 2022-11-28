@@ -96,4 +96,12 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

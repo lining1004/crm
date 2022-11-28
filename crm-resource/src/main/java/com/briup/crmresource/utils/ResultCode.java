@@ -23,6 +23,7 @@ public enum ResultCode {
     USER_HAS_EXISTED(20005, "用户已存在"),
     USER_NOT_EMPTY(20006, "用户名不能为空"),
     USER_PASSWD_ERROR(20007,"密码错误"),
+    USER_VERIFICATION_CODE_ERROR(20008,"验证码错误"),
 
     /* 业务错误：30001-39999 */
     SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "业务逻辑出现问题"),

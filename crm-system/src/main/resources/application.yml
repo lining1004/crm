@@ -11,3 +11,20 @@ swagger:
     key-name: token
     auth-regex: (?!/login|/logout)(\w|\W)*
   base-path: /**
+gitee:
+  auth:
+    response_type: code
+    authorize_uri: https://gitee.com/oauth/authorize  #码云第三方认证页面
+    oauth_uri: https://gitee.com/oauth/token
+    redirect_uri: http://localhost:9005/auth/gitee
+    user_uri: https://gitee.com/api/v5/user?access_token={accessToken}
+    email_uri: https://gitee.com/api/v5/emails?access_token={accessToken}
+    grant_type: authorization_code
+    client_id: f076b00c996c2ccaa469c22c58a6a4b8486a6782c13d56e72cb9f7ee184d8253
+    client_secret: 4eaeeedcdd28be67441eb52d36c97c1aadea9a3ba5c640c24ce52983fa99c494
+aliyun: # 阿里云API秘钥
+  accessKey_id: LTAI5tAYKJCJyt11fgaoF485
+  accessKey_secret: jnsZGNzhJv8TVHkzcZSjBMhUc95uQS
+  SignName: 阿里云短信测试
+  TemplateCode: SMS_154950909
+  endpoint: dysmsapi.aliyuncs.com

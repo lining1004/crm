@@ -3,6 +3,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +17,9 @@ import java.io.Serializable;
  * @author briup
  * @since 2022-11-24
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @TableName("sys_user")
 public class User implements Serializable {
 
@@ -34,7 +41,7 @@ public class User implements Serializable {
     private Integer flag;
 
     @TableField("usr_role_id")
-    private Long roleId;
+    private Integer roleId;
 
     public Long getId() {
         return id;
@@ -76,11 +83,11 @@ public class User implements Serializable {
         this.flag = flag;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
